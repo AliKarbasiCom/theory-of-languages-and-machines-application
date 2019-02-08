@@ -1,0 +1,96 @@
+﻿Build1=AliKarbasi,ir.akarbasi.tolam,akarbasi
+File1=cloud-computing.png
+File2=home.bal
+File3=IRANYekanMobileRegular.ttf
+File4=select_mode_line.png
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+Group=Default Group
+IconFile=
+Library1=core
+Library2=phone
+Library3=pusheplugin_v1.2.0
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="25"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~AddPermission(android.permission.INTERNET)~\n~AddPermission(android.permission.ACCESS_NETWORK_STATE)~\n~~\n~'pushe~\n~' کد های مربوط به مانیفست پوش نوتیفیکیشن را در این قسمت وارد کنید~\n~'end pushe~\n~~\n~'-----------------~\n~'www.AKarbasi.ir~\n~'Info@AKarbasi.ir~\n~'@AliKarbasiCom~\n~'-----------------
+Module1=Starter
+NumberOfFiles=4
+NumberOfLibraries=3
+NumberOfModules=1
+Version=8
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: نظریه زبان ها و ماشین ها
+	#VersionCode: 2
+	#VersionName: 1
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: true
+#End Region
+
+'-----------------
+'www.AKarbasi.ir
+'Info@AKarbasi.ir
+'@AliKarbasiCom
+'-----------------
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: False
+#End Region
+
+Sub Process_Globals
+
+End Sub
+
+Sub Globals
+	
+	Dim pushe As Pushe
+	Private notifpanel As WebView
+	Private imgheader As ImageView
+	
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	
+	Activity.LoadLayout("home")
+	pushe.initialize()
+	notifpanel.Visible=False
+	ProgressDialogShow2("درحال دریافت اطلاعات ...",False)
+	notifpanel.LoadUrl("###?session="&Rnd(0,99999))
+	'آدرس صفحه مورد نظر را به جای ### وارد کنید
+
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub notifpanel_PageFinished (Url As String)
+	
+	ProgressDialogHide
+	notifpanel.Visible=True
+	
+End Sub
+
+Sub imgheader_LongClick
+	
+	Msgbox("App Version: 1.0"& CRLF &""& CRLF &"Developer: Ali Karbasi"& CRLF &"Web: www.AKarbasi.ir"& CRLF &"E-Mail: Info@AKarbasi.ir","About")
+	
+End Sub
+
+Sub imgheader_Click
+	
+	ToastMessageShow("😟",False)
+	
+End Sub
+
+'-----------------
+'www.AKarbasi.ir
+'Info@AKarbasi.ir
+'@AliKarbasiCom
+'-----------------
